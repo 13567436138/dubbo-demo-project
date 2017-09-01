@@ -1,0 +1,257 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mark.demo.dubbo</groupId>
+  <artifactId>serviceA</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>serviceA Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+  	<spring.version>4.3.0.RELEASE</spring.version>    
+  	 <org.aspectj-version>1.8.7</org.aspectj-version> 
+  	 <dubbox.version>2.8.4</dubbox.version>
+     <zookeeper.version>3.4.6</zookeeper.version>
+     <zkClient.version>0.1</zkClient.version>
+  </properties>
+  <dependencies>
+		<dependency>
+			  <groupId>com.mark.demo.dubbo</groupId>
+			  <artifactId>service-api</artifactId>
+			  <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>  
+          <groupId>org.springframework</groupId>  
+          <artifactId>spring-core</artifactId>  
+          <version>${spring.version}</version>  
+	    </dependency>  
+	    
+	    <dependency>  
+          <groupId>org.springframework</groupId>  
+          <artifactId>spring-beans</artifactId>  
+          <version>${spring.version}</version>  
+	    </dependency>  
+		
+		<dependency>  
+          <groupId>org.springframework</groupId>  
+          <artifactId>spring-context</artifactId>  
+          <version>${spring.version}</version>  
+	    </dependency>  
+	      
+	    <!-- spring 附加功能包 -->  
+	    <dependency>  
+	        <groupId>org.springframework</groupId>  
+	        <artifactId>spring-webmvc</artifactId>  
+	        <version>${spring.version}</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>org.springframework</groupId>  
+	        <artifactId>spring-tx</artifactId>  
+	        <version>${spring.version}</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>org.springframework</groupId>  
+	        <artifactId>spring-jdbc</artifactId>  
+	        <version>${spring.version}</version>  
+	    </dependency>  
+	    
+	     <!-- AspectJ -->  
+	    <dependency>  
+	        <groupId>org.aspectj</groupId>  
+	        <artifactId>aspectjrt</artifactId>  
+	        <version>${org.aspectj-version}</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>org.aspectj</groupId>  
+	        <artifactId>aspectjweaver</artifactId>  
+	        <version>${org.aspectj-version}</version>  
+	    </dependency> 
+	    
+		    
+		    <!-- Servlet -->  
+	    <dependency>  
+	        <groupId>javax.servlet</groupId>  
+	        <artifactId>javax.servlet-api</artifactId>  
+	        <version>3.1.0</version>  
+	        <scope>provided</scope>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>javax.servlet.jsp</groupId>  
+	        <artifactId>jsp-api</artifactId>  
+	        <version>2.1</version>  
+	        <scope>provided</scope>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>javax.servlet</groupId>  
+	        <artifactId>jstl</artifactId>  
+	        <version>1.2</version>  
+	    </dependency>  
+	    
+	     <!-- slf4j -->  
+	    <dependency>  
+	        <groupId>org.slf4j</groupId>  
+	        <artifactId>jcl-over-slf4j</artifactId>  
+	        <version>1.5.8</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>org.slf4j</groupId>  
+	        <artifactId>slf4j-api</artifactId>  
+	        <version>1.5.8</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>org.slf4j</groupId>  
+	        <artifactId>slf4j-log4j12</artifactId>  
+	        <version>1.5.8</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>log4j</groupId>  
+	        <artifactId>log4j</artifactId>  
+	        <version>1.2.14</version>  
+	    </dependency> 
+	    <!-- zookeeper -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+		</dependency>
+
+		<!-- zkClient -->
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>${zkClient.version}</version>
+		</dependency>
+		<!-- dubbox -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>${dubbox.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.0.0</version>
+		</dependency>
+  </dependencies>
+  
+  <build>
+  	<finalName>serviceA</finalName>
+    <resources>
+       <resource>
+           <directory>src/main/resources</directory>
+           <includes>
+               <include>**/*.xml</include>
+               <include>**/*.properties</include>
+           </includes>
+           <filtering>true</filtering>
+       </resource>
+   </resources>
+  	<plugins>
+    	<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-surefire-plugin</artifactId>
+			<version>2.10</version>
+			<configuration>
+				<parallel>methods</parallel>
+				<threadCount>10</threadCount>
+			</configuration>
+		</plugin>
+		<plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <version>2.3.2</version>  
+            <configuration>  
+                <source>1.8</source>  
+                <target>1.8</target>  
+            </configuration>  
+        </plugin>
+        
+		<!-- <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+            	<archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                <webResources>
+                    <resource>
+                        this is relative to the pom.xml directory
+                        <directory>src/main/resources</directory>
+                        <targetPath>WEB-INF/classes/</targetPath>
+                        <filtering>true</filtering>
+                    </resource>
+                </webResources>
+            </configuration>
+        </plugin> -->
+        
+        <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>2.5</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin> 
+
+        <plugin>  
+         <groupId>org.apache.maven.plugins</groupId>  
+         <artifactId>maven-resources-plugin</artifactId>  
+         <version>2.6</version>  
+         <executions>  
+           <execution>  
+              <id>copy-resources</id>   
+              <phase>validate</phase>  
+              <goals>  
+                <goal>copy-resources</goal>  
+              </goals>  
+              <configuration>  
+              	 <encoding>UTF-8</encoding>  
+                 <outputDirectory>${project.build.outputDirectory}</outputDirectory>  
+                  <resources>  
+                     <resource>  
+                        <!-- 指定resources插件处理哪个目录下的资源文件 -->  
+                        <directory>src/main/resources</directory> 
+                        <filtering>true</filtering>  
+                     </resource>  
+                  </resources>  
+              </configuration>  
+           </execution>  
+         </executions>  
+  
+         </plugin>  
+  	</plugins>
+  </build>
+  
+  
+  
+	 <profiles>
+
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <p.dubbo.registry.file.path>d:/.dubbo</p.dubbo.registry.file.path>
+                <dubbo.registry.address>redis://192.168.198.128:7000</dubbo.registry.address>
+                <dubbo.registry.timeout>10000</dubbo.registry.timeout>
+
+                <log.file.path>d:/logs/tomcat_log</log.file.path>
+                <log.file.path>d:/logs</log.file.path>
+
+                
+            </properties>
+        </profile>
+        
+     </profiles>
+</project>

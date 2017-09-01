@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.mark.demo.dubbo</groupId>
+	<artifactId>dubbo-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>dubbo-parent</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencyManagement>
+		
+	</dependencyManagement>
+	<packaging>pom</packaging>
+	<modules>
+		<module>dubbo-client Maven Webapp</module>
+		<module>serviceA Maven Webapp</module>
+		<module>service-api</module>
+	</modules>
+	
+	 
+	<profiles>
+
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <p.dubbo.registry.file.path>d:/.dubbo</p.dubbo.registry.file.path>
+                <dubbo.registry.address>redis://192.168.198.128:7000</dubbo.registry.address>
+                <dubbo.registry.timeout>10000</dubbo.registry.timeout>
+
+                <log.file.path>d:/logs/tomcat_log</log.file.path>
+                <log.file.path>d:/logs</log.file.path>
+
+                
+            </properties>
+        </profile>
+        
+     </profiles>
+     
+     <build>
+     	<plugins>
+     		<plugin>  
+	            <groupId>org.apache.maven.plugins</groupId>  
+	            <artifactId>maven-compiler-plugin</artifactId>  
+	            <version>2.3.2</version>  
+	            <configuration>  
+	                <source>1.8</source>  
+	                <target>1.8</target>  
+	            </configuration>  
+	        </plugin>
+     	</plugins>
+     </build>
+     
+     
+</project>
